@@ -3,35 +3,26 @@ package stack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Stack<Trem> {
+public class Stack<T> {
 
-    private List<Trem> vetor;
-    private int topo;
+    private final List<T> elementos = new ArrayList<>();
 
-    public Stack (){
-        this.vetor = new ArrayList<Trem>();
-        this.topo = 0;
+    public void empilhar(T item) {
+        elementos.add(item);
     }
 
-    public void empilhar(Trem x) {
-        this.vetor.add(x);
-        this.topo++;
-    }
-
-    public Trem desempilhar() throws Exception {
-        if(this.estaVazia()) {
-            return null;
+    public T desempilhar() throws Exception {
+        if (estaVazia()) {
+            throw new Exception("A pilha está vazia!");
         }
-
-        return this.vetor.get(this.topo);
+        return elementos.remove(elementos.size() - 1);
     }
 
     public boolean estaVazia() {
-        return this.vetor.isEmpty();
+        return elementos.isEmpty();
     }
 
     public int tamanho() {
-        return this.vetor.size();
+        return elementos.size();
     }
 }
-
